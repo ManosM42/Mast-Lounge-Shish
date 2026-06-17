@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="el">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mast Lounge Shisha — Menu</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300&family=Jost:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --black:  #0a0905;
+      --ember:  #c9943a;
+      --gold:   #e8c97a;
+      --ash:    #5a5448;
+      --text:   #d6ccb8;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--black);
+      color: var(--text);
+      font-family: 'Jost', sans-serif;
+      font-weight: 300;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 60% 50% at 20% 20%, rgba(201,148,58,.07) 0%, transparent 70%),
+        radial-gradient(ellipse 50% 60% at 80% 80%, rgba(201,148,58,.05) 0%, transparent 70%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* HEADER */
+    header {
+      position: relative;
+      z-index: 1;
+      text-align: center;
+      padding: 64px 24px 48px;
+      border-bottom: 1px solid rgba(201,148,58,.2);
+    }
+    .logo-mark {
+      display: inline-block;
+      width: 52px;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, var(--ember), transparent);
+      margin-bottom: 24px;
+    }
+    header h1 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2.4rem, 8vw, 4rem);
+      font-weight: 300;
+      letter-spacing: .12em;
+      color: var(--gold);
+      text-transform: uppercase;
+      line-height: 1;
+    }
+    header p {
+      margin-top: 10px;
+      font-size: .72rem;
+      letter-spacing: .35em;
+      text-transform: uppercase;
+      color: var(--ash);
+    }
+
+    /* LEGEND */
+    .legend {
+      position: relative;
+      z-index: 1;
+      display: flex;
+      justify-content: center;
+      gap: 28px;
+      padding: 18px 24px;
+      background: rgba(201,148,58,.04);
+      border-bottom: 1px solid rgba(201,148,58,.1);
+    }
+    .legend-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: .65rem;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      color: var(--ash);
+    }
+    .dot {
+      width: 8px; height: 8px;
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+    .dot-standard { background: var(--ash); }
+    .dot-premium  { background: var(--ember); }
+
+    /* MAIN */
+    main {
+      position: relative;
+      z-index: 1;
+      max-width: 620px;
+      margin: 0 auto;
+      padding: 48px 24px 80px;
+    }
+
+    /* SECTION HEADER */
+    .section-header {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin-bottom: 8px;
+    }
+    .section-header h2 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.5rem;
+      font-weight: 300;
+      font-style: italic;
+      color: var(--gold);
+      letter-spacing: .04em;
+      white-space: nowrap;
+    }
+    .section-line {
+      flex: 1;
+      height: 1px;
+      background: linear-gradient(90deg, rgba(201,148,58,.35), transparent);
+    }
+
+    /* ITEMS */
+    .item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 16px 0;
+      border-bottom: 1px solid rgba(255,255,255,.05);
+      opacity: 0;
+      transform: translateY(8px);
+      transition: opacity .4s, transform .4s;
+    }
+    .item.visible { opacity: 1; transform: none; }
+    .item:last-child { border-bottom: none; }
+
+    .item-left {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex: 1;
+    }
+
+    .tier-dot {
+      width: 7px; height: 7px;
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+    .tier-standard { background: var(--ash); }
+    .tier-premium  { background: var(--ember); box-shadow: 0 0 6px rgba(201,148,58,.5); }
+
+    .item-name {
+      font-size: .95rem;
+      font-weight: 400;
+      color: var(--text);
+      letter-spacing: .04em;
+    }
+
+    .item-dots {
+      flex: 1;
+      border-bottom: 1px dotted rgba(90,84,72,.3);
+      margin: 0 4px;
+      min-width: 16px;
+    }
+
+    .item-price { font-family: 'Cormorant Garamond', serif; font-size: 1.05rem; font-weight: 600; letter-spacing: .04em; white-space: nowrap; }
+    .price-standard { color: var(--ash); font-weight: 300; }
+    .price-premium  { color: var(--gold); }
+
+    /* DIVIDER between sections */
+    .section-gap { margin-top: 48px; }
+
+    /* FOOTER */
+    footer {
+      position: relative;
+      z-index: 1;
+      text-align: center;
+      padding: 28px 24px 44px;
+      border-top: 1px solid rgba(201,148,58,.12);
+    }
+    footer p {
+      font-size: .65rem;
+      letter-spacing: .2em;
+      text-transform: uppercase;
+      color: var(--ash);
+    }
+
+    @media (max-width: 400px) {
+      header h1 { font-size: 2rem; }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="logo-mark"></div>
+  <h1>Mast Lounge</h1>
+  <p>Shisha Menu</p>
+</header>
+
+<div class="legend">
+  <div class="legend-item"><div class="dot dot-standard"></div> Standard</div>
+  <div class="legend-item"><div class="dot dot-premium"></div> Premium</div>
+</div>
+
+<main>
+
+  <!-- ALL FLAVOURS -->
+  <div class="section-header">
+    <h2>Flavours</h2>
+    <div class="section-line"></div>
+  </div>
+
+  <div class="item">
+    <div class="item-left"><div class="tier-dot tier-premium"></div><div class="item-name">Grape Mint</div></div>
+    <div class="item-dots"></div>
+    <div class="item-price premium"><span class="price-standard">12</span> / <span class="price-premium">18€</span></div>
+  </div>
+
+  <div class="item">
+    <div class="item-left"><div class="tier-dot tier-premium"></div><div class="item-name">Grape</div></div>
+    <div class="item-dots"></div>
+    <div class="item-price premium"><span class="price-standard">12</span> / <span class="price-premium">18€</span></div>
+  </div>
+
+  <div class="item">
+    <div class="item-left"><div class="tier-dot tier-premium"></div><div class="item-name">Mint</div></div>
+    <div class="item-dots"></div>
+    <div class="item-price premium"><span class="price-standard">12</span> / <span class="price-premium">18€</span></div>
+  </div>
+
+  <div class="item">
+    <div class="item-left"><div class="tier-dot tier-premium"></div><div class="item-name">Lemon Cake</div></div>
+    <div class="item-dots"></div>
+    <div class="item-price premium"><span class="price-standard">12</span> / <span class="price-premium">18€</span></div>
+  </div>
+
+  <div class="item">
+    <div class="item-left"><div class="tier-dot tier-premium"></div><div class="item-name">Two Apple</div></div>
+    <div class="item-dots"></div>
+    <div class="item-price premium"><span class="price-standard">12</span> / <span class="price-premium">18€</span></div>
+  </div>
+
+  <div class="item">
+    <div class="item-left"><div class="tier-dot tier-premium"></div><div class="item-name">Blueberry</div></div>
+    <div class="item-dots"></div>
+    <div class="item-price premium"><span class="price-standard">12</span> / <span class="price-premium">18€</span></div>
+  </div>
+
+</main>
+
+<footer>
+  <p>Mast Lounge Shisha &nbsp;·&nbsp; Enjoy Responsibly</p>
+</footer>
+
+<script>
+  const items = document.querySelectorAll('.item');
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach((e, i) => {
+      if (e.isIntersecting) {
+        setTimeout(() => e.target.classList.add('visible'), i * 60);
+        obs.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.05 });
+  items.forEach(el => obs.observe(el));
+</script>
+
+</body>
+</html>
